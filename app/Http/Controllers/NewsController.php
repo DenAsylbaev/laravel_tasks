@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\NewsTrait;
 
 class NewsController extends Controller
@@ -18,8 +17,10 @@ class NewsController extends Controller
         ]);
     }
 
-    public function show(int $id)
+    public function show(int $news_id)
     {
-        return $this->getNews($id);
+        return \view('news.show', [
+            'news' => $this->getNews($news_id),
+        ]);
     }
 }

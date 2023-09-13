@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\NewsCategoriesController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\WelcomePageController;
 use Illuminate\Support\Facades\Route;
@@ -16,21 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return "Welcome to our newspage";
-// });
-
-
 Route::group(['prefix' => 'guest'], static function() {
+    
     Route::get('/', [WelcomePageController::class, 'show']);
-    Route::get('/categories', [NewsCategoriesController::class, 'index']);
-    Route::get('/categories/{id}', [NewsCategoriesController::class, 'show'])
+    Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/categories/{id}', [CategoryController::class, 'show'])
         ->where('id', '\d+');
 
     Route::get('/categories/{id}/news', [NewsController::class, 'index'])
         ->name('news.index');
         
-    Route::get('/categories/{id}/news/{id}/show', [NewsController::class, 'show'])
-        ->where('id', '\d+')
+    Route::get('/categories/{id}/news/{news_id}/show', [NewsController::class, 'show'])
+        ->where('news_id', '\d+')
             ->name('news.show');
 });

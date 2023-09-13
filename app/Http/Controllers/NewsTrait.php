@@ -12,11 +12,11 @@ trait NewsTrait
     public function getCategories(int $id = null)
     {
         $categories = [];
-        $categoriesCuantity = 5;
+        $categoriesQuantity = 5;
         $faker = Faker\Factory::create();
 
         if ($id === null) {
-            for($i = 1; $i < $categoriesCuantity; $i++) {
+            for($i = 1; $i < $categoriesQuantity; $i++) {
                 $categories[$i] = [
                     'id' => $i,
                     'title' => $faker->text(10),
@@ -32,17 +32,17 @@ trait NewsTrait
         ];
     }
 
-    public function getNews(int $id = null, $category = 'free category')
+    public function getNews(int $news_id = null, $category_id = 1)
     {
         $news = [];
-        $newsQuantity = 5;
+        $newsQuantity = 15;
         $faker = Faker\Factory::create();
 
-        if ($id === null) {
+        if ($news_id === null) {
             for($i = 1; $i < $newsQuantity; $i++) {
                 $news[$i] = [
-                    'category' => $category,
-                    'id' => $i,
+                    'category_id' => $category_id,
+                    'news_id' => $i,
                     'title' => $faker->text(10),
                     'description' => $faker->text(100),
                     'author' => $faker->name(),
@@ -52,8 +52,8 @@ trait NewsTrait
             return $news;
         }
         return [
-            'category' => $category,
-            'id' => $id,
+            'category_id' => $category_id,
+            'news_id' => $news_id,
             'title' => $faker->text(10),
             'description' => $faker->text(100),
             'author' => $faker->name(),
