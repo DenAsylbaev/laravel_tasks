@@ -12,7 +12,11 @@ class NewsController extends Controller
 
     public function index()
     {
-        return \view('news.index', [
+        // return \view('news.index', [
+        //     'news' => $this->getNews(),
+        // ]);
+
+        return \view('news.index') -> with([
             'news' => $this->getNews(),
         ]);
     }
