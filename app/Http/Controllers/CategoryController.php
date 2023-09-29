@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\NewsTrait;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    use NewsTrait;
-    //
     public function index()
     {
-        return \view('categories.index', [
-            'categories' => $this->getCategories(),
+        $categories = DB::table('categories')->get();
+
+        return \view('categories.index') -> with([
+            'categories' => $categories,
         ]);
     }
 
     public function show(int $id)
     {
-        return $this->getCategories($id);
-    }
+        $categories = DB::table('categories')->find($id);
+        return \view('categories.show', [
+            'categories' => $categories,
+        ]);    }
 }

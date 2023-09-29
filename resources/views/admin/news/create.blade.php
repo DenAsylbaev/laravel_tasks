@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <form method="post" action="{{ route('admin.news.store') }}">
+    <form method="post" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="title">Заголовок</label>
@@ -24,11 +24,19 @@
                 <option @if(old('status') === 'active') selected @endif>active</option>
                 <option @if(old('status') === 'blocked') selected @endif>blocked</option>
             </select>
+            
+            <label for="category_id">Категория</label>
+            <select class="form-control" name="category_id" id="category_id">
+                @foreach($categories as $n)
+                    <option><?=$n->id?></option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="description">Описание</label>
             <textarea class="form-control" name="description" id="description">{{ old('description') }}</textarea>
         </div>
+            <input name="image" type="file" id="image" wire:model="photos" multiple>
         <br>
         <button type="submit" class="btn btn-success">Save</button>
     </form>

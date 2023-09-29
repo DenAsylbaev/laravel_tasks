@@ -3,28 +3,30 @@
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
+// use PDO;
+// use PDOStatement;
 
-use App\Http\Controllers\NewsTrait;
 
 class NewsController extends Controller
 {
-    use NewsTrait;
-
     public function index()
     {
-        // return \view('news.index', [
-        //     'news' => $this->getNews(),
-        // ]);
+        // $db = new PDO ("mysql:host=mysql;port=3306;dbname:mysql",
+        // "user",
+        // "password");
 
+        $news = DB::table('news')->get();
         return \view('news.index') -> with([
-            'news' => $this->getNews(),
+            'news' => $news,
         ]);
     }
 
-    public function show(int $news_id)
+    public function show(int $id)
     {
+        $news = DB::table('news')->find($id);
         return \view('news.show', [
-            'news' => $this->getNews($news_id),
+            'news' => $news,
         ]);
     }
 }

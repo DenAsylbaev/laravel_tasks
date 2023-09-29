@@ -9,9 +9,9 @@
             </svg>
 
             <div class="card-body">
-                <h2><?=$news['title']?></h2>
-                <p class="card-text"><?=$news['description']?></p>
-                <p class="card-text"><?=$news['author']?>(<?=$news['created_at']?>)</p>
+                <h2><?=$news->title?></h2>
+                <p class="card-text"><?=$news->description?></p>
+                <p class="card-text"><?=$news->author?>(<?=$news->created_at?>)</p>
 
             </div>
         </div>

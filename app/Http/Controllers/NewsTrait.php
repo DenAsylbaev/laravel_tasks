@@ -41,8 +41,8 @@ trait NewsTrait
         if ($news_id === null) {
             for($i = 1; $i < $newsQuantity; $i++) {
                 $news[$i] = [
-                    'category_id' => $category_id,
                     'news_id' => $i,
+                    'category_id' => $category_id,
                     'title' => $faker->text(10),
                     'description' => $faker->text(100),
                     'author' => $faker->name(),

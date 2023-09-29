@@ -17,6 +17,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         ->name('news.create');
     Route::get('/news/store', [AdminNewsController::class, 'store'])
         ->name('news.store');
+    Route::post('/news/store', [AdminNewsController::class, 'store'])
+        ->name('news.store');
 
     Route::get('/categories', [AdminCategoryController::class, 'index'])
         ->name('categories.index');

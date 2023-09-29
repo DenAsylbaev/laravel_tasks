@@ -22,10 +22,10 @@
                         </svg>
 
                         <div class="card-body">
-                            <h2><?=$n['title']?></h2>
-                            <p class="card-text"><?=$n['description']?></p>
+                            <h2><?=$n->title?></h2>
+                            <p class="card-text"><?=$n->description?></p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="<?=route('news.index', ['id' => $n['id']])?>">Show news</a>
+                                <a href="<?=route('news.index', ['id' => $n->id])?>">Show news</a>
                             </div>
                         </div>
                     </div>

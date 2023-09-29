@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\NewsTrait;
-
 use Illuminate\Support\Facades\Storage;
-
 
 
 class CategoryController extends Controller
@@ -45,8 +43,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->flash();
-        // Storage::append('categories.json', 'App Text');
-
         $newCategory = $request->all();
         $categoriesInStoreArray = [];
 

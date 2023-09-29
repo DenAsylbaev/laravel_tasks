@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\NewsTrait;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
@@ -17,8 +19,11 @@ class NewsController extends Controller
 
     public function index()
     {
+
+        $news = DB::table('news')->get();
+
         return \view('admin.news.index', [
-            'newsList' => $this->getNews(),
+            'newsList' => $news,
         ]);
     }
 
@@ -29,7 +34,11 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return \view('admin.news.create');
+        $categories = DB::table('categories')->get();
+
+        return \view('admin.news.create', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -40,8 +49,22 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        return 'NEWS STORE';
+        $request->flash();
+        $addingNews = $request->all();
+        $file = $request->file('image');
+        $originalName = $file->getClientOriginalName();
+
+        DB::table('news')->insert([
+            'category_id' => $addingNews['category_id'],
+            'title' => $addingNews['title'],
+            'author'=> $addingNews['author'],
+            'description'=> $addingNews['description'],
+            'created_at'=> now(),
+         ]);
+
+         Storage::disk('public')->put($originalName, 'Images');
+
+        return redirect()->route('admin.news.index');
     }
 
     /**

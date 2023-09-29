@@ -18,12 +18,12 @@
                 <div class="col">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <h2><?=$n['title']?></h2>
-                            <p class="card-text"><?=$n['description']?></p>
+                            <h2><?=$n->title?></h2>
+                            <p class="card-text"><?=$n->description?></p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="<?=route('news.show', ['news_id' => $n['news_id'], 'id' => $n['category_id']])?>">More</a>
+                                <a href="<?=route('news.show', ['news_id' => $n->id, 'id' => $n->category_id])?>">More</a>
                             </div>
-                            <p class="card-text"><?=$n['author']?>(<?=$n['created_at']?>)</p>
+                            <p class="card-text"><?=$n->author?>(<?=$n->created_at?>)</p>
 
                         </div>
                     </div>
