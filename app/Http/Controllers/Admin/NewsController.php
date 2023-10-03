@@ -33,24 +33,10 @@ class NewsController extends Controller
     {
 
         $data = $request->only(['category_id', 'title', 'author', 'description']);
-
         $news = new News($data);
-        // $request->flash();
-        // $addingNews = $request->all();
-        // // $file = $request->file('image');
-        // // $originalName = $file->getClientOriginalName();
-
-        // DB::table('news')->insert([
-        //     'category_id' => $addingNews['category_id'],
-        //     'title' => $addingNews['title'],
-        //     'author'=> $addingNews['author'],
-        //     'description'=> $addingNews['description'],
-        //     'created_at'=> now(),
-        //  ]);
-
-        // //  Storage::disk('public')->put($originalName, 'Images');
-
-        // return redirect()->route('admin.news.index');
+        $news->save();
+        
+        return redirect()->route('admin.news.index');
     }
 
     public function show($id)
