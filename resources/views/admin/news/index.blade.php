@@ -41,4 +41,6 @@
             </tbody>
         </table>
     </div>
+    {{ $newsList->links() }}
+
 @endsection

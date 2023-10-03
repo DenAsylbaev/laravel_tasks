@@ -21,7 +21,7 @@
                             <h2><?=$n->title?></h2>
                             <p class="card-text"><?=$n->description?></p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <a href="<?=route('news.show', ['news_id' => $n->id, 'id' => $n->category_id])?>">More</a>
+                                <a href="{{ route('news.show', $n) }}">Show news</a>
                             </div>
                             <p class="card-text"><?=$n->author?>(<?=$n->created_at?>)</p>
 

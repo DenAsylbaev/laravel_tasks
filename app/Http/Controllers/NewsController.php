@@ -3,28 +3,25 @@
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
-// use PDO;
-// use PDOStatement;
+use App\Models\News;
+use App\Models\Category;
 
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Category $categories)
     {
-        // $db = new PDO ("mysql:host=mysql;port=3306;dbname:mysql",
-        // "user",
-        // "password");
+        // $news = News::query()->where('category_id', $categories->id);
+        $news = News::query()->paginate(6);
 
-        $news = DB::table('news')->get();
         return \view('news.index') -> with([
             'news' => $news,
         ]);
     }
 
-    public function show(int $id)
+    public function show(News $news)
     {
-        $news = DB::table('news')->find($id);
+
         return \view('news.show', [
             'news' => $news,
         ]);

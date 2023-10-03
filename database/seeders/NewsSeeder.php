@@ -27,7 +27,7 @@ class NewsSeeder extends Seeder
 
         for ($i=0; $i < $quantityNews; $i++) {
             $news[] = [
-                'category_id' => $faker->randomNumber(1,10),
+                'category_id' => $faker->numberBetween(1,3),
                 'title' =>  $faker->text(10),
                 'author' =>  $faker->text(20),
                 'description' =>  $faker->text(20) ,

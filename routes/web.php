@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\HomeController as HomeController;
+
+Route::get('/', HomeController::class)->name('home');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', AdminController::class)->name('index');
@@ -36,14 +39,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::group(['prefix' => 'guest'], static function() {
     
     Route::get('/', [WelcomePageController::class, 'show']);
+    
     Route::get('/categories', [CategoryController::class, 'index']);
-    Route::get('/categories/{id}', [CategoryController::class, 'show'])
-        ->where('id', '\d+');
+    Route::get('/categories/{categories}', [CategoryController::class, 'show']);
 
-    Route::get('/categories/{id}/news', [NewsController::class, 'index'])
+    Route::get('/categories/{categories}/news', [NewsController::class, 'index'])
         ->name('news.index');
         
-    Route::get('/categories/{id}/news/{news_id}/show', [NewsController::class, 'show'])
-        ->where('news_id', '\d+')
+    Route::get('/categories/news/{news}', [NewsController::class, 'show'])
             ->name('news.show');
 });
