@@ -10,7 +10,6 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-
     public function index()
     {
         $categories = Category::all();
@@ -22,25 +21,21 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return \view('admin.categories.create');
+        $categories = Category::all();
+        return \view('admin.categories.create', [
+            'categories' => $categories,
+        ]);
     }
 
     public function store(Request $request)
     {
-        // $request->flash();
-        // $newCategory = $request->all();
-        // $categoriesInStoreArray = [];
+        $data = $request->only(['title', 'description']);
+        $categories = new Category($data);
+        if ($categories->save()) {
+            return redirect()->route('admin.categories.index')->with('success', 'Запись успешно сохранена');
+        }
 
-        // if (Storage::disk('local')->exists('categories.json')) {
-            
-        //     $categoriesInStoreJSON = Storage::get('categories.json');
-        //     $categoriesInStoreArray = json_decode($categoriesInStoreJSON, true);
-        // }
-        
-        // $categoriesInStoreArray[] = $newCategory;
-        // Storage::disk('local')->put('categories.json', json_encode($categoriesInStoreArray));
-
-        // return redirect()->route('admin.categories.create');
+        return back()->with('error', 'Не удалось добавить запись');
     }
 
     public function show($id)
@@ -48,18 +43,28 @@ class CategoryController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit($categories)
     {
-        //
+        return view('admin.categories.edit', [
+            'categories' => $categories        
+        ]);    
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $categories)
     {
-        //
+        $data = $request->only(['title', 'description']);
+        $categories->fill($data);
+        if ($categories->save()) {
+            return redirect()->route('admin.categories.index')->with('success', 'Запись успешно изменена');
+        }
+        return back()->with('error', 'Не удалось обновить запись');
     }
 
-    public function destroy($id)
+    public function destroy(Category $categories)
     {
-        //
+        if ($categories->delete()) {
+            return redirect()->route('admin.categories.index')->with('success', 'Запись успешно удалена');
+        }
+        return back()->with('error', 'Не удалось удалить запись');
     }
 }

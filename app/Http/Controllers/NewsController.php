@@ -11,8 +11,9 @@ class NewsController extends Controller
 {
     public function index(Category $categories)
     {
-        // $news = News::query()->where('category_id', $categories->id);
-        $news = News::query()->paginate(6);
+        $news = News::query()
+            ->where('category_id', $categories->id)
+            ->paginate(3);
 
         return \view('news.index') -> with([
             'news' => $news,

@@ -18,6 +18,22 @@ Route::prefix('admin')->name('admin.')->group(function () {
         ->name('news.index');
     Route::get('/news/create', [AdminNewsController::class, 'create'])
         ->name('news.create');
+        
+    Route::get('/news/edit/{news}', [AdminNewsController::class, 'edit'])
+        ->name('news.edit');
+    Route::post('/news/edit/{news}', [AdminNewsController::class, 'edit'])
+        ->name('news.edit');
+
+    Route::get('/news/update/{news}', [AdminNewsController::class, 'update'])
+        ->name('news.update');
+    Route::put('/news/update/{news}', [AdminNewsController::class, 'update'])
+        ->name('news.update');
+
+    Route::get('/news/destroy/{news}', [AdminNewsController::class, 'destroy'])
+        ->name('news.destroy');
+    Route::put('/news/destroy/{news}', [AdminNewsController::class, 'destroy'])
+        ->name('news.destroy');
+
     Route::get('/news/store', [AdminNewsController::class, 'store'])
         ->name('news.store');
     Route::post('/news/store', [AdminNewsController::class, 'store'])
@@ -28,11 +44,25 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/categories/create', [AdminCategoryController::class, 'create'])
         ->name('categories.create');
 
+    Route::get('/categories/edit/{categories}', [AdminCategoryController::class, 'edit'])
+        ->name('categories.edit');
+    Route::post('/categories/edit/{categories}', [AdminCategoryController::class, 'edit'])
+        ->name('categories.edit');
+
+    Route::get('/categories/update/{categories}', [AdminCategoryController::class, 'update'])
+        ->name('categories.update');
+    Route::put('/categories/update/{categories}', [AdminCategoryController::class, 'update'])
+        ->name('categories.update');
+
+    Route::get('/categories/destroy/{categories}', [AdminCategoryController::class, 'destroy'])
+        ->name('categories.destroy');
+    Route::put('/categories/destroy/{categories}', [AdminCategoryController::class, 'destroy'])
+        ->name('categories.destroy');
+
     Route::get('/categories/store', [AdminCategoryController::class, 'store'])
         ->name('categories.store');
     Route::post('/categories/store', [AdminCategoryController::class, 'store'])
         ->name('categories.store');
-
 });
 
 

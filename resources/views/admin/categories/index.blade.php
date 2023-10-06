@@ -10,6 +10,8 @@
     </div>
     
     <div class="table-responsive">
+    @include('inc.message')
+
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -25,7 +27,10 @@
                     <td>{{ $categories['id'] }}</td>
                     <td>{{ $categories['title'] }}</td>
                     <td>{{ $categories['description'] }}</td>
-                    <td><a href="#">Edit</a> &nbsp; <a href="#">Delete</a></td>
+                    <td>
+                        <a href="{{ route('admin.categories.edit', $categories) }}">Edit</a> &nbsp; 
+                        <a href="{{ route('admin.categories.destroy', $categories) }}">Delete</a>
+                    </td>
                 </tr>
             @empty
                 <tr>

@@ -10,6 +10,8 @@
     </div>
 
     <div class="table-responsive">
+    @include('inc.message')
+
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -25,13 +27,15 @@
             <tbody>
             @forelse($newsList as $news)
                 <tr>
-                    <td><?=$news->id?></td>
-                    <td><?=$news->category_id?></td>
-                    <td><?=$news->title?></td>
-                    <td><?=$news->author?></td>
-                    <td><?=$news->description?></td>
-                    <td><?=$news->created_at?></td>
-                    <td><a href="#">Edit</a> &nbsp; <a href="#">Delete</a></td>
+                    <td>{{ $news->id }}</td>
+                    <td>{{ $news->title }}</td>
+                    <td>{{ $news->category->title }}</td>
+                    <td>{{ $news->author }}</td>
+                    <td>{{ $news->created_at }}</td>
+                    <td>
+                        <a href="{{ route('admin.news.edit', $news) }}">Edit</a> &nbsp; 
+                        <a href="{{ route('admin.news.destroy', $news) }}">Delete</a>
+                    </td>
                 </tr>
             @empty
                 <tr>
@@ -41,6 +45,5 @@
             </tbody>
         </table>
     </div>
-    {{ $newsList->links() }}
 
 @endsection
