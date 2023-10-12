@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Http\Requests\Admin\Categories\Create;
+use App\Http\Requests\Admin\Categories\Edit;
 
 
 
@@ -27,7 +29,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Create $request)
     {
         $data = $request->only(['title', 'description']);
         $categories = new Category($data);
@@ -50,7 +52,7 @@ class CategoryController extends Controller
         ]);    
     }
 
-    public function update(Request $request, Category $categories)
+    public function update(Edit $request, Category $categories)
     {
         $data = $request->only(['title', 'description']);
         $categories->fill($data);

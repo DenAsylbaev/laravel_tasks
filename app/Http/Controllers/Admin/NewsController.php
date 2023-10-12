@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\News\Create;
+use App\Http\Requests\Admin\News\Edit;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Category;
@@ -29,9 +31,8 @@ class NewsController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Create $request)
     {
-
         $data = $request->only(['category_id', 'title', 'author', 'description']);
         $news = new News($data);
         if ($news->save()) {
@@ -55,8 +56,8 @@ class NewsController extends Controller
         ]);    
     }
 
-    public function update(Request $request, News $news)
-    {
+    public function update(Edit $request, News $news)
+    {   
         $data = $request->only(['category_id', 'title', 'author', 'description']);
         $news->fill($data);
         if ($news->save()) {
