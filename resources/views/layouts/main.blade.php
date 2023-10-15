@@ -44,6 +44,7 @@
         </button>
       </div>
     </div>
+
   </header>
 
   <main>
@@ -59,5 +60,6 @@
   </footer>
 
   <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+
 </body>
 </html>

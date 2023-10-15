@@ -60,6 +60,7 @@ class NewsController extends Controller
     {   
         $data = $request->only(['category_id', 'title', 'author', 'description']);
         $news->fill($data);
+
         if ($news->save()) {
             return redirect()->route('admin.news.index')->with('success', 'Запись успешно изменена');
         }
