@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+                        
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
@@ -38,6 +38,14 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <a href="{{ route('social-providers.redirect') }}">
+                            <img src="{{ asset('assets/images/vk.png') }}" width="50">
+                        </a>
+
+                        <a href="{{ route('social-providers.redirect') }}">
+                            <img src="{{ asset('assets/images/git.png') }}" width="50">
+                        </a>
 
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">

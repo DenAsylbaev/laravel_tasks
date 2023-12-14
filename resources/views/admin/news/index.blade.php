@@ -19,7 +19,7 @@
                 <th scope="col">Категория</th>
                 <th scope="col">Заголовок</th>
                 <th scope="col">Автор</th>
-                <th scope="col">Статус</th>
+                <!-- <th scope="col">Статус</th> -->
                 <th scope="col">Дата добавления</th>
                 <th scope="col">Действия</th>
             </tr>
@@ -28,8 +28,8 @@
             @forelse($newsList as $news)
                 <tr>
                     <td>{{ $news->id }}</td>
-                    <td>{{ $news->title }}</td>
                     <td>{{ $news->category->title }}</td>
+                    <td>{{ $news->title }}</td>
                     <td>{{ $news->author }}</td>
                     <td>{{ $news->created_at }}</td>
                     <td>

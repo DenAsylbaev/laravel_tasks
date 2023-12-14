@@ -23,7 +23,11 @@
             <a class="nav-link @if(request()->routeIs('admin.users.index')) active @endif" href="{{ route('admin.users.index') }}">
                     <span data-feather="users"></span>
                     Пользователи
-                </a>
+            </a>
+            <a class="nav-link @if(request()->routeIs('admin.users.index')) active @endif" href="{{ route('admin.parser') }}">
+                <span data-feather="users"></span>
+                    Парсер
+            </a>
             </li>
 
         </ul>
