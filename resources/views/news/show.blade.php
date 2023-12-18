@@ -3,10 +3,7 @@
 
     <div class="col col_flex">
         <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" focusable="false">
-                <rect width="100%" height="100%" fill="#55595c"/>
-                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Image</text>
-            </svg>
+        <img src="{{ $news->image }}" alt="" width="50%">
 
             <div class="card-body">
                 <h2><?=$news->title?></h2>

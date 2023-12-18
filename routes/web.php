@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
+
 use App\Http\Controllers\WelcomePageController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\IndexController as AdminController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
-use App\Http\Controllers\HomeController as HomeController;
+use App\Http\Controllers\Admin\ResourceController as AdminResourceController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SocialProvidersController as SocialProvidersController;
@@ -42,6 +43,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])
             ->name('categories.destroy');
         Route::post('/categories/store', [AdminCategoryController::class, 'store'])
             ->name('categories.store');
+
+        Route::get('/resources', [AdminResourceController::class, 'index'])
+            ->name('resources.index');
+        Route::get('/resources/destroy/{resources}', [AdminResourceController::class, 'destroy'])
+            ->name('resources.destroy');
 
         Route::get('/users', [AdminUserController::class, 'index'])
             ->name('users.index');

@@ -3,22 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\ParserService;
 use App\Services\Interfaces\Parser;
 use Illuminate\Http\Request;
-use Orchestra\Parser\Xml\Facade as XmlParser;
 use App\Models\News;
+use App\Models\Resource;
 
 
 class ParserController extends Controller
 {
     public function __invoke(Request $request, Parser $parserService)
     {
+        $resouces = Resource::all()->toArray();
+        $urls = [];
+        foreach ($resouces as $resouces) {
+            $urls[] = $resouces['url'];
+        }
 
-        $url = "https://lenta.ru/rss";
-        // $url2 = "https://news.rambler.ru/rss/tech/";
-
-        $parserService->setLink($url)->saveParseData();
+        foreach ($urls as $url) {
+            $parserService->setLink($url)->saveParseData();
+            // dispatch(new NewsParsingJob($url));
+        }
 
         $news = News::query()->get();
 
