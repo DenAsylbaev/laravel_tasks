@@ -27,6 +27,7 @@ class ParserService implements Parser
         $newsForSaveInDB = [];
         $categoryForSaveInDB = [];
 
+        //логику отсюда
         $data = $parser->parse([
             'title' => [
                 'uses' => 'channel.title',
@@ -56,11 +57,10 @@ class ParserService implements Parser
         
         // для новостей
         for ($i=0; $i < count($data['news']); $i++) {
-            // var_dump($data['news'][$i]['author']);
             $newsForSaveInDB[] = [
                 'category_id' => Category::where('title', '=', $data['news'][$i]['category'])->firstOrFail()->id,
                 'title' => $data['news'][$i]['title'],
-                'author' => $data['news'][$i]['author']? :'НЕТ АВТОРА',// добавить проверку
+                'author' => $data['news'][$i]['author']? :'НЕТ АВТОРА',
                 'description' => $data['news'][$i]['description'],
                 'created_at' => now(),
             ];
