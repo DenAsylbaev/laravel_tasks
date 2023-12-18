@@ -24,7 +24,6 @@
                                 <a href="{{ route('news.show', $n) }}">Show news</a>
                             </div>
                             <p class="card-text"><?=$n->author?>(<?=$n->created_at?>)</p>
-
                         </div>
                     </div>
                 </div>

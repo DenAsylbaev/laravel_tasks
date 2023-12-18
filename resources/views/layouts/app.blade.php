@@ -63,6 +63,14 @@
                                             Админка
                                         </a>
                                     @endif
+
+                                    @if(Auth::user()->avatar !== null)
+                                        <li class="nav-item">
+                                            <img src="{{ Auth::user()->avatar }}" style="width:45px;">
+                                        </li>
+
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

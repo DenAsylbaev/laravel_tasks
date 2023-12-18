@@ -13,12 +13,11 @@ class UserController extends Controller
 {
     public function index()
     {
-        // dd(Auth::id());
         $users = User::all()->except(Auth::id());
 
         return \view('admin.users.index', [
             'users' => $users,
-        ]);    
+        ]);
     }
 
     public function create()

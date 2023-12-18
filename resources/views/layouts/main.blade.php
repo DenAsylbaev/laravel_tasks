@@ -38,8 +38,8 @@
             data-bs-toggle="collapse" 
             data-bs-target="#navbarHeader" 
             aria-controls="navbarHeader" 
-            aria-expanded="false" a
-            ria-label="Toggle navigation">
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>

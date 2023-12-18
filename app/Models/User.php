@@ -39,7 +39,7 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    protected $casts = [ // для преобразования типов
         'email_verified_at' => 'datetime',
         'password' => 'string',
         'is_admin' => 'boolean',
