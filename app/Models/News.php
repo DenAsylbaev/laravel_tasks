@@ -15,7 +15,8 @@ class News extends Model
         'category_id',
         'title',
         'author',
-        'description'
+        'description',
+        'image'
     ];
 
     public function category(): BelongsTo

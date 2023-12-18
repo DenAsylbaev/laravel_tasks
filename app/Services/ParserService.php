@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Services\Interfaces\Parser;
 use Orchestra\Parser\Xml\Facade as XmlParser;
 use Illuminate\Support\Facades\DB;
+use App\Models\News;
 
 
 
@@ -45,26 +46,40 @@ class ParserService implements Parser
                 'uses' => 'channel.item[title,link,author,description,pubDate,category,enclosure::url]'
             ],
         ]);
-
-        // для категорий
-        for ($i=0; $i < count($data['news']); $i++) {
+        // dump($data);
+        foreach ($data['news'] as $news) {
             $category = Category::firstOrCreate(
-                ['title' => $data['news'][$i]['category']],
-                // ['description' => $data['news'][$i]['description']],
-                ['created_at' => now()],
+                ['title' => $news['category']],
             );
-        };
-        
-        // для новостей
-        for ($i=0; $i < count($data['news']); $i++) {
-            $newsForSaveInDB[] = [
-                'category_id' => Category::where('title', '=', $data['news'][$i]['category'])->firstOrFail()->id,
-                'title' => $data['news'][$i]['title'],
-                'author' => $data['news'][$i]['author']? :'НЕТ АВТОРА',
-                'description' => $data['news'][$i]['description'],
+
+            News::query()->firstOrCreate([
+                'category_id' => $category->id,
+                'title' => $news['title'],
+                'author' => $news['author']? :'НЕТ АВТОРА',
+                'description' => $news['description'],
                 'created_at' => now(),
-            ];
+                'image' => $news['enclosure::url'],
+            ]);        
         }
-        DB::table('news')->insert($newsForSaveInDB);
+        // // для категорий
+        // for ($i=0; $i < count($data['news']); $i++) {
+        //     $category = Category::firstOrCreate(
+        //         ['title' => $data['news'][$i]['category']],
+        //         // ['description' => $data['news'][$i]['description']],
+        //         ['created_at' => now()],
+        //     );
+        // };
+        
+        // // для новостей
+        // for ($i=0; $i < count($data['news']); $i++) {
+        //     $newsForSaveInDB[] = [
+        //         'category_id' => Category::where('title', '=', $data['news'][$i]['category'])->firstOrFail()->id,
+        //         'title' => $data['news'][$i]['title'],
+        //         'author' => $data['news'][$i]['author']? :'НЕТ АВТОРА',
+        //         'description' => $data['news'][$i]['description'],
+        //         'created_at' => now(),
+        //     ];
+        // }
+        // DB::table('news')->insert($newsForSaveInDB);
     }
 }

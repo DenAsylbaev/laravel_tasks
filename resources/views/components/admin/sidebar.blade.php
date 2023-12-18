@@ -20,16 +20,22 @@
                 </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link @if(request()->routeIs('admin.users.index')) active @endif" href="{{ route('admin.users.index') }}">
-                    <span data-feather="users"></span>
-                    Пользователи
-            </a>
-            <a class="nav-link @if(request()->routeIs('admin.users.index')) active @endif" href="{{ route('admin.parser') }}">
-                <span data-feather="users"></span>
-                    Парсер
-            </a>
+                <a class="nav-link @if(request()->routeIs('admin.users.index')) active @endif" href="{{ route('admin.users.index') }}">
+                        <span data-feather="users"></span>
+                        Пользователи
+                </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link @if(request()->routeIs('admin.parser')) active @endif" href="{{ route('admin.parser') }}">
+                        Парсер
+                </a>
             </li>
 
+            <li class="nav-item">
+            <a class="nav-link @if(request()->routeIs('admin.resources.index')) active @endif" href="{{ route('admin.resources.index') }}">
+                        Ресурсы
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

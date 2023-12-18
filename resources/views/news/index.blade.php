@@ -18,6 +18,7 @@
                 <div class="col">
                     <div class="card shadow-sm">
                         <div class="card-body">
+                            <img src="{{ $n->image }}" alt="" width="100%">
                             <h2><?=$n->title?></h2>
                             <p class="card-text"><?=$n->description?></p>
                             <div class="d-flex justify-content-between align-items-center">
@@ -31,5 +32,6 @@
             </div>
         </div>
     </div>
+    {{ $news->links() }}
 
 @endsection

@@ -13,7 +13,7 @@ class NewsController extends Controller
     {
         $news = News::query()
             ->where('category_id', $categories->id)
-            ->paginate(3);
+            ->paginate(6);
 
         return \view('news.index') -> with([
             'news' => $news,
