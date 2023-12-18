@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/social.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -65,10 +67,9 @@
                                     @endif
 
                                     @if(Auth::user()->avatar !== null)
-                                        <li class="nav-item">
+                                        <div class="dropdown-item">
                                             <img src="{{ Auth::user()->avatar }}" style="width:45px;">
-                                        </li>
-
+                                        </div>
                                     @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"

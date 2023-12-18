@@ -71,9 +71,9 @@ Route::group(['middleware' => 'guest'], function () {
     // Route::get('/vkontakte/callback', [SocialProvidersController::class, 'callback'])
     //     ->name('social-providers.callback');
 
-    Route::get('/github/redirect', [SocialProvidersController::class, 'redirect'])
+    Route::get('/{driver}/redirect', [SocialProvidersController::class, 'redirect'])
         ->name('social-providers.redirect');
-    Route::get('/github/callback', [SocialProvidersController::class, 'callback'])
+    Route::get('/{driver}/callback', [SocialProvidersController::class, 'callback'])
         ->name('social-providers.callback');
 });
 
